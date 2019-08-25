@@ -11,12 +11,14 @@ const menus = async (req, res) => {
                     {
                         'id': 11,
                         'name': '每日推荐',
-                        'icon': 'el-icon-time'
+                        'icon': 'el-icon-time',
+                        'path': 'daily-recommend'
                     },
                     {
                         'id': 12,
                         'name': '商品搜索',
-                        'icon': 'el-icon-search'
+                        'icon': 'el-icon-search',
+                        'path': 'search-wares'
                     }
                 ]
             },
@@ -28,12 +30,14 @@ const menus = async (req, res) => {
                     {
                         'id': 21,
                         'name': 'sub test 1',
-                        'icon': 'el-icon-headset'
+                        'icon': 'el-icon-headset',
+                        'path': 'test-path'
                     },
                     {
                         'id': 22,
                         'name': 'sub test 2',
-                        'icon': 'el-icon-mouse'
+                        'icon': 'el-icon-mouse',
+                        'path': 'test-path'
                     }
                 ]
             },
@@ -45,12 +49,14 @@ const menus = async (req, res) => {
                     {
                         'id': 31,
                         'name': 'sub test 3-1',
-                        'icon': 'el-icon-data-analysis'
+                        'icon': 'el-icon-data-analysis',
+                        'path': 'test-path'
                     },
                     {
                         'id': 32,
                         'name': 'sub test 3-2',
-                        'icon': 'el-icon-shopping-cart-full'
+                        'icon': 'el-icon-shopping-cart-full',
+                        'path': 'test-path'
                     }
                 ]
             }
