@@ -2,6 +2,7 @@ const mongo = require('mongoose')
 
 const userSchema = new mongo.Schema({
     username: {
+        unique: true,
         type: String,
         required: true,
         minlength: 3,
