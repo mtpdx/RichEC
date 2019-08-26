@@ -18,6 +18,9 @@ app.use(user)
 const menu = require('./route/menu.js')
 app.use(menu)
 
+const wares = require('./route/wares.js')
+app.use(wares)
+
 app.listen(3000, ()=>{
     console.log('rich api server boot success')
 })
