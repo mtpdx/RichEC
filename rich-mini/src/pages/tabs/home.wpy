@@ -1,0 +1,34 @@
+<template>
+  <view>home{{testList.length}}</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class extends wepy.page {
+  data = {
+    testList: []
+  }
+
+  onLoad() {
+    this.initData()
+  }
+
+  async initData() {
+    const { data: res, statusCode } = await wepy.request({
+      url: 'http://127.0.0.1:3000/test',
+      method: 'GET',
+      data: {}
+    })
+
+    if (statusCode !== 200 && res.state !== 0) {
+      return console.log('get data failed')
+    }
+
+    this.testList = res.data
+    this.$apply()
+  }
+}
+</script>
+
+<style lang="less">
+</style>
