@@ -39,23 +39,7 @@ export default class RichCard extends wepy.component {
 
   props = {
     goodob: Object,
-    default: {
-      plateform: 'JD',
-      price: '25.10',
-      priceVal: 25.1,
-      itemUrl: 'https://item.jd.com/33993400341.html',
-      itemId: '33993400341',
-      monthSale: 0,
-      id: 'JD-33993400341',
-      coverImage:
-        'http://img14.360buyimg.com/n1/jfs/t26515/84/412456718/69901/28ad815c/5b914579Nd7db328c.jpg',
-      title: '清华北大学霸的黄金学习法文科篇',
-      vid: 10012841,
-      couponMoney: '5.0',
-      order: 2,
-      nowPrice: '20.10',
-      nowPriceVal: 20.1
-    }
+    default: {}
   }
 
   onLoad() {

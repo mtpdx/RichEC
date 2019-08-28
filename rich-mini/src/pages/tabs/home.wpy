@@ -1,8 +1,30 @@
 <template>
-  <view>
+  <view class="home-container">
     <block wx:for="{{goodsList}}" wx:key="index">
-      <richcard goodob="{{item}}" @tap="goGoodsDetail({{item.id}})" />
+      <!-- <richcard goodob="{{item}}" @tap="goGoodsDetail({{item.id}})" /> -->
       <!-- <view class="sep_line"></view> -->
+
+      <!-- todo 自定义component RichGoodCard 待研究 -->
+      <!-- 
+        script 里加注释还不行了???
+        // import RichCard from '@/components/RichGoodCard'
+          // components = {
+          //   'richcard': RichCard
+          // }
+      -->
+      <view class="card-container" bindtap="goGoodsDetail({{item.id + ',' + item.vid}})">
+        <view class="img">
+          <image src="{{item.coverImage}}" />
+        </view>
+        <text class="title" selectable>{{item.title}}</text>
+        <text wx:if="{{item.nowPrice}}" class="o-price">原价 ¥{{item.price}}</text>
+        <text
+          class="n-price"
+        >{{item.nowPrice ? "券后价":"现价"}} ¥{{item.nowPrice ?item.nowPrice:item.price}}</text>
+        <text class="sale">月销量{{item.monthSale}}</text>
+        <text wx:if="{{item.couponMoney}}" class="coupon">券{{item.couponMoney}}</text>
+      </view>
+      <view class="sep_line"></view>
     </block>
     <view class="over_line" hidden="{{!noMoreData}}">-------- No More Data --------</view>
   </view>
@@ -11,18 +33,88 @@
 <script>
 import wepy from 'wepy'
 import mix from '@/mixins/tabs/home.js'
-import RichCard from '@/components/RichGoodCard'
+
 export default class extends wepy.page {
-  components = {
-    'richcard': RichCard
-  }
   mixins = [mix]
 }
 </script>
 
 <style lang="less">
+.home-container {
+  margin: 5rpx auto;
+  width: 710rpx;
+}
+.card-container {
+  width: 100%;
+  height: 280rpx;
+  position: relative;
+  background-color: #fff;
+  // border: 1rpx solid #da2f25;
+  image {
+    position: absolute;
+    top: 20rpx;
+    left: 0;
+    width: 240rpx;
+    height: 240rpx;
+  }
+  .title {
+    // https://www.jianshu.com/p/3b70710c7633
+    display: -webkit-box;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: absolute;
+    line-height: 40rpx;
+    top: 26rpx;
+    left: 260rpx;
+    font-size: 28rpx;
+    color: #333333;
+  }
+
+  .n-price {
+    position: absolute;
+    bottom: 26rpx;
+    left: 260rpx;
+    font-size: 36rpx;
+    color: #da2f25;
+  }
+
+  .o-price {
+    position: absolute;
+    bottom: 90rpx;
+    left: 260rpx;
+    font-size: 26rpx;
+    color: #999999;
+  }
+
+  .coupon {
+    height: 46rpx;
+    position: absolute;
+    bottom: 90rpx;
+    right: 0;
+    color: #fff;
+    font-size: 26rpx;
+    // padding-top: 5rpx;
+    // padding-bottom: 5rpx;
+    line-height: 46rpx;
+    padding-left: 10rpx;
+    padding-right: 10rpx;
+    background-color: #ff4200;
+    border-radius: 6rpx;
+  }
+
+  .sale {
+    position: absolute;
+    bottom: 24rpx;
+    right: 0;
+    font-size: 26rpx;
+    color: #999999;
+  }
+}
 .sep_line {
-  border-top: 1rpx solid #da2f25;
+  border-top: 1rpx solid #ececec;
 }
 
 .over_line {

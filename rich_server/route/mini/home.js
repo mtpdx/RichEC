@@ -9,4 +9,6 @@ mini_home.get('/swiperdata', ctrl.swiper_data)
 
 mini_home.get('/recommend', ctrl.recommend_data)
 
+mini_home.get('/goods_detail', ctrl.goods_detail)
+
 module.exports = mini_home

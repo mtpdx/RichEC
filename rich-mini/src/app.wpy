@@ -15,7 +15,7 @@ export default class extends wepy.app {
       'pages/tabs/report',
       'pages/tabs/cart',
       'pages/tabs/me',
-      'pages/goods_detail/main'
+      'pages/goods_detail'
     ],
     window: {
       backgroundTextStyle: 'dark',

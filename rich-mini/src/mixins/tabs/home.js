@@ -17,8 +17,10 @@ export default class extends wepy.mixin {
         this.getGoodList()
     }
 
-    async getGoodList(callback) {
+    async getGoodList(cb) {
         this.isLoading = true
+        console.log('pagenum' + this.pagenum)
+
         const { data: res } = await wepy.richGet('/home/recommend', {
             pagenum: this.pagenum
         })
@@ -31,14 +33,18 @@ export default class extends wepy.mixin {
         this.pagenum = res.data.pageNum
         this.isLoading = false
         this.$apply()
-        callback && callback()
+        console.log(this.goodsList);
+
+        cb && cb()
 
     }
 
     methods = {
-        goGoodsDetail(goods_id) {
+        goGoodsDetail(idStr) {
+            let ids = idStr.split(',')
+            
             wepy.navigateTo({
-                url: '/pages/goods_detail/main?goods_id=' + goods_id
+                url: '/pages/goods_detail?goods_id=' + ids[0] + (ids.length > 1 ? ("&vid=" + ids[1]) : '')
             })
         }
     }

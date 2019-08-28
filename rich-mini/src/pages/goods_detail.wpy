@@ -1,0 +1,97 @@
+<template>
+  <view class="goods_detail_container">
+    <swiper indicator-dots circular>
+      <block wx:for="{{goodsInfo.slideImgs}}" wx:key="index">
+        <swiper-item>
+          <image src="{{item}}" bindtap="preview({{item}})"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <view class="goods_info">
+      <view class="sep_line"></view>
+      <view class="box1">
+        <view class="price">￥{{goodsInfo.price}}</view>
+        <view class="goods_name">
+          <view class="left">{{goodsInfo.title}}</view>
+          <view class="right">
+            <image class="star-icon" src="../assets/icons/star.png"/>
+            <view class="star-text">收藏</view>
+          </view>
+        </view>
+        <view class="month-sale">月销量 {{goodsInfo.monthSale}}</view>
+      </view>
+      <view class="sep_line"></view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import mix from '@/mixins/goods_detail.js'
+export default class extends wepy.page {
+  config = {
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#fff',
+    navigationBarTitleText: '商品详情',
+    navigationBarTextStyle: 'black',
+    enablePullDownRefresh: true,
+    onReachBottomDistance: 50
+  }
+  mixins = [mix]
+}
+</script>
+
+<style lang="less">
+swiper {
+  height: 750rpx;
+  image {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.goods_info {
+  .sep_line {
+    border-bottom: 15rpx solid #efefef;
+  }
+  .box1 {
+    padding: 0 10rpx;
+    .price {
+      font-size: 40rpx;
+      color: #da2f25;
+      margin: 20rpx 0;
+    }
+    .goods_name {
+      display: flex;
+      justify-content: space-between;
+      .left {
+        font-size: 26rpx;
+        padding-right: 40rpx;
+      }
+      .right {
+        width: 200rpx;
+        text-align: center;
+        border-left: 1rpx solid #eee;
+        .star-icon{
+          width: 48rpx;
+          height: 48rpx;
+        }
+        .star-text {
+          font-size: 20rpx;
+        }
+      }
+    }
+    .month-sale {
+      font-size: 26rpx;
+      color: #666;
+      // font-weight: bold;
+      line-height: 80rpx;
+    }
+  }
+}
+
+.goods_detail_container {
+  padding-bottom: 50px !important;
+}
+</style>
