@@ -1,0 +1,22 @@
+<template>
+  <view>goods detail</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import mix from '@/mixins/goods_detail/main.js'
+export default class extends wepy.page {
+  config = {
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#fff',
+    navigationBarTitleText: 'detail',
+    navigationBarTextStyle: 'black',
+    enablePullDownRefresh: true,
+    onReachBottomDistance: 50
+  }
+  mixins = [mix]
+}
+</script>
+
+<style lang="less">
+</style>

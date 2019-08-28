@@ -1,0 +1,41 @@
+<template>
+  <view>
+    <swiper
+      indicator-dots="{{indicatorDots}}"
+      autoplay="{{autoplay}}"
+      interval="{{interval}}"
+      duration="{{duration}}"
+      circular="{{duration}}"
+    >
+      <block wx:for="{{imgUrls}}" wx:key="index">
+        <swiper-item>
+          <navigator url="{{item.navigator_url}}" open-type="{{item.open_type}}">
+            <image src="{{item.image_src}}" />
+          </navigator>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import mix from '@/mixins/tabs/report.js'
+export default class extends wepy.page {
+  mixins = [mix]
+}
+</script>
+
+<style lang="less">
+swiper {
+  margin: 10rpx;
+  height: 280rpx;
+  navigator,
+  image {
+    margin: 0 auto;
+    height: 100%;
+    width: 710rpx;
+    border-radius: 16rpx;
+  }
+}
+</style>

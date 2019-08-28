@@ -1,34 +1,35 @@
 <template>
-  <view>home{{testList.length}}</view>
+  <view>
+    <block wx:for="{{goodsList}}" wx:key="index">
+      <richcard goodob="{{item}}" @tap="goGoodsDetail({{item.id}})" />
+      <!-- <view class="sep_line"></view> -->
+    </block>
+    <view class="over_line" hidden="{{!noMoreData}}">-------- No More Data --------</view>
+  </view>
 </template>
 
 <script>
 import wepy from 'wepy'
+import mix from '@/mixins/tabs/home.js'
+import RichCard from '@/components/RichGoodCard'
 export default class extends wepy.page {
-  data = {
-    testList: []
+  components = {
+    'richcard': RichCard
   }
-
-  onLoad() {
-    this.initData()
-  }
-
-  async initData() {
-    const { data: res, statusCode } = await wepy.request({
-      url: 'http://127.0.0.1:3000/test',
-      method: 'GET',
-      data: {}
-    })
-
-    if (statusCode !== 200 && res.state !== 0) {
-      return console.log('get data failed')
-    }
-
-    this.testList = res.data
-    this.$apply()
-  }
+  mixins = [mix]
 }
 </script>
 
 <style lang="less">
+.sep_line {
+  border-top: 1rpx solid #da2f25;
+}
+
+.over_line {
+  font-size: 24rpx;
+  text-align: center;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #ddd;
+}
 </style>

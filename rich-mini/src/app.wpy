@@ -4,6 +4,7 @@
 <script>
 import wepy from 'wepy'
 import 'wepy-async-function'
+import '@/baseApi.js'
 
 export default class extends wepy.app {
   config = {
@@ -11,48 +12,58 @@ export default class extends wepy.app {
       'pages/tabs/home',
       'pages/tabs/cates',
       'pages/tabs/search',
+      'pages/tabs/report',
       'pages/tabs/cart',
-      'pages/tabs/me'
+      'pages/tabs/me',
+      'pages/goods_detail/main'
     ],
     window: {
       backgroundTextStyle: 'dark',
       navigationBarBackgroundColor: '#d81e06',
       navigationBarTitleText: 'Rich',
-      navigationBarTextStyle: 'white'
+      navigationBarTextStyle: 'white',
+      onReachBottomDistance: 60,
+      enablePullDownRefresh: true
     },
     tabBar: {
       selectedColor: '#d81e06',
       list: [
         {
           pagePath: 'pages/tabs/home',
-          text: '首页',
+          text: '推荐',
           iconPath: './assets/icons/home.png',
           selectedIconPath: './assets/icons/home-active.png'
         },
+        // {
+        //   pagePath: 'pages/tabs/cates',
+        //   text: '分类',
+        //   iconPath: './assets/icons/cates.png',
+        //   selectedIconPath: './assets/icons/cates-active.png'
+        // },
+        // {
+        //   pagePath: 'pages/tabs/search',
+        //   text: '搜索',
+        //   iconPath: './assets/icons/search.png',
+        //   selectedIconPath: './assets/icons/search-active.png'
+        // },
         {
-          pagePath: 'pages/tabs/cates',
-          text: '分类',
-          iconPath: './assets/icons/cates.png',
-          selectedIconPath: './assets/icons/cates-active.png'
-        },
-        {
-          pagePath: 'pages/tabs/search',
-          text: '搜索',
+          pagePath: 'pages/tabs/report',
+          text: '快报',
           iconPath: './assets/icons/search.png',
           selectedIconPath: './assets/icons/search-active.png'
         },
         {
           pagePath: 'pages/tabs/cart',
-          text: '购物车',
+          text: '收藏',
           iconPath: './assets/icons/cart.png',
           selectedIconPath: './assets/icons/cart-active.png'
-        },
-        {
-          pagePath: 'pages/tabs/me',
-          text: '我',
-          iconPath: './assets/icons/my.png',
-          selectedIconPath: './assets/icons/my-active.png'
         }
+        // {
+        //   pagePath: 'pages/tabs/me',
+        //   text: '我',
+        //   iconPath: './assets/icons/my.png',
+        //   selectedIconPath: './assets/icons/my-active.png'
+        // }
       ]
     }
   }
@@ -65,6 +76,43 @@ export default class extends wepy.app {
     super()
     this.use('requestfix')
     this.use('promisify')
+    //  拦截request请求
+    this.intercept('request', {
+      // 发出请求时的回调函数
+      config(p) {
+        // 对所有request请求中的OBJECT参数对象统一附加时间戳属性
+        // p.timestamp = new Date().getTime()
+        // console.log('config request: ', p)
+
+        wepy.showLoading({
+          title: '数据加载中...'
+        })
+
+        // 必须返回OBJECT参数对象，否则无法发送请求到服务端
+        return p
+      },
+
+      // 请求成功后的回调函数
+      success(p) {
+        // 可以在这里对收到的响应数据对象进行加工处理
+        // console.log('request success: ', p)
+        // 必须返回响应数据对象，否则后续无法对响应数据进行处理
+        return p
+      },
+
+      //  请求失败后的回调函数
+      fail(p) {
+        // console.log('request fail: ', p)
+        // 必须返回响应数据对象，否则后续无法对响应数据进行处理
+        return p
+      },
+
+      // 请求完成时的回调函数(请求成功或失败都会被执行)
+      complete(p) {
+        wepy.hideLoading()
+        console.log('request complete: ', p)
+      }
+    })
   }
 
   onLaunch() {

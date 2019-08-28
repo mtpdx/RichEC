@@ -1,0 +1,124 @@
+<template>
+  <view class="card-container">
+    <view class="img">
+      <image src="{{goodob.coverImage}}" />
+    </view>
+    <text class="title" selectable>{{goodob.title}}</text>
+    <text wx:if="{{goodob.price}}" class="o-price">原价 ¥{{goodob.price}}</text>
+    <text
+      wx:if="{{goodob.nowPrice}}"
+      class="n-price"
+    >{{goodob.price ? "券后价":"现价"}} ¥{{goodob.nowPrice}}</text>
+    <text class="sale">月销量{{goodob.monthSale}}</text>
+    <text wx:if="{{goodob.couponMoney}}" class="coupon">券{{goodob.couponMoney}}</text>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class RichCard extends wepy.component {
+  data = {
+    goodob: {
+      plateform: 'JD',
+      price: '25.10',
+      priceVal: 25.1,
+      itemUrl: 'https://item.jd.com/33993400341.html',
+      itemId: '33993400341',
+      monthSale: 0,
+      id: 'JD-33993400341',
+      coverImage:
+        'http://img14.360buyimg.com/n1/jfs/t26515/84/412456718/69901/28ad815c/5b914579Nd7db328c.jpg',
+      title: '清华北大学霸的黄金学习法文科篇',
+      vid: 10012841,
+      couponMoney: '5.0',
+      order: 2,
+      nowPrice: '20.10',
+      nowPriceVal: 20.1
+    }
+  }
+
+  props = {
+    goodob: Object,
+    default: {
+      plateform: 'JD',
+      price: '25.10',
+      priceVal: 25.1,
+      itemUrl: 'https://item.jd.com/33993400341.html',
+      itemId: '33993400341',
+      monthSale: 0,
+      id: 'JD-33993400341',
+      coverImage:
+        'http://img14.360buyimg.com/n1/jfs/t26515/84/412456718/69901/28ad815c/5b914579Nd7db328c.jpg',
+      title: '清华北大学霸的黄金学习法文科篇',
+      vid: 10012841,
+      couponMoney: '5.0',
+      order: 2,
+      nowPrice: '20.10',
+      nowPriceVal: 20.1
+    }
+  }
+
+  onLoad() {
+    console.log('rich card onload')
+  }
+}
+</script>
+
+<style lang="less">
+.card-container {
+  width: 750rpx;
+  height: 280rpx;
+  padding: 20rpx;
+  position: relative;
+  background-color: #fff;
+  image {
+    width: 240rpx;
+    height: 240rpx;
+  }
+  .title {
+    position: absolute;
+    top: 26rpx;
+    left: 260rpx;
+    font-size: 28rpx;
+    color: #333333;
+  }
+
+  .n-price {
+    position: absolute;
+    bottom: 26rpx;
+    left: 260rpx;
+    font-size: 36rpx;
+    color: #da2f25;
+  }
+
+  .o-price {
+    position: absolute;
+    bottom: 90rpx;
+    left: 260rpx;
+    font-size: 26rpx;
+    color: #999999;
+  }
+
+  .coupon {
+    position: absolute;
+    bottom: 26rpx;
+    right: 60rpx;
+    color: #fff;
+    font-size: 26rpx;
+    padding-top: 4rpx;
+    padding-bottom: 4rpx;
+    padding-left: 8rpx;
+    padding-right: 8rpx;
+    background-color: #da2f25;
+    border-radius: 6rpx;
+  }
+
+  .sale {
+    position: absolute;
+    bottom: 90rpx;
+    right: 60rpx;
+    font-size: 26rpx;
+    color: #999999;
+  }
+}
+</style>
