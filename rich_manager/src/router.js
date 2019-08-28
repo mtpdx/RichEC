@@ -5,6 +5,7 @@ import Home from './components/Home.vue'
 import Welcome from './components/Welcome.vue'
 import DailyRecommend from './components/wares/DailyRecommend.vue'
 import SearchWares from './components/wares/SearchWares.vue'
+import WaresEdit from './components/wares/WaresEdit.vue'
 
 Vue.use(Router)
 
@@ -34,6 +35,10 @@ const router = new Router({
         {
           path: '/search-wares',
           component: SearchWares
+        },
+        {
+          path: '/wares/edit',
+          component: WaresEdit
         }
       ]
     }

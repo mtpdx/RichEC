@@ -25,7 +25,12 @@
               <i :class="item.icon"></i>
               <span>{{item.name}}</span>
             </template>
-            <el-menu-item :index="'/' + sub_item.path" v-for="sub_item in item.children" :key="sub_item.id" v-on:click="saveNavState('/' + sub_item.path)">
+            <el-menu-item
+              :index="'/' + sub_item.path"
+              v-for="sub_item in item.children"
+              :key="sub_item.id"
+              v-on:click="saveNavState('/' + sub_item.path)"
+            >
               <template slot="title">
                 <i :class="sub_item.icon"></i>
                 <span>{{sub_item.name}}</span>
@@ -38,12 +43,9 @@
           </el-menu-item>
         </el-menu>
       </el-aside>
-      <el-container>
-        <el-main>
-          <router-view></router-view>
-        </el-main>
-        <el-footer>Footer</el-footer>
-      </el-container>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -129,9 +131,5 @@ export default {
 
 .el-main {
   background-color: #c8ebdf;
-}
-
-.el-footer {
-  background-color: #ffffff;
 }
 </style>
