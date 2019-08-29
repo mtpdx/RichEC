@@ -4,7 +4,7 @@
       <!-- <richcard goodob="{{item}}" @tap="goGoodsDetail({{item.id}})" /> -->
       <!-- <view class="sep_line"></view> -->
 
-      <!-- todo 自定义component RichGoodCard 待研究 -->
+      <!-- todo 自定义component RichGoodCard 不管用啊 辣鸡 难道只能原生自定义??? 待研究 -->
       <!-- 
         script 里加注释还不行了???
         // import RichCard from '@/components/RichGoodCard'

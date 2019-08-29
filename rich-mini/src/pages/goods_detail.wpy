@@ -3,7 +3,7 @@
     <swiper indicator-dots circular>
       <block wx:for="{{goodsInfo.slideImgs}}" wx:key="index">
         <swiper-item>
-          <image src="{{item}}" bindtap="preview({{item}})"></image>
+          <image src="{{item}}" bindtap="preview({{item}})" />
         </swiper-item>
       </block>
     </swiper>
@@ -15,14 +15,48 @@
         <view class="goods_name">
           <view class="left">{{goodsInfo.title}}</view>
           <view class="right">
-            <image class="star-icon" src="../assets/icons/star.png"/>
+            <van-icon name="star-o"></van-icon>
             <view class="star-text">收藏</view>
           </view>
         </view>
         <view class="month-sale">月销量 {{goodsInfo.monthSale}}</view>
       </view>
       <view class="sep_line"></view>
+      <view class="medis-detail">
+        <video src="{{goodsInfo.video}}" controls muted="false"></video>
+        <block wx:for="{{goodsInfo.detailImgs}}" wx:key="index">
+          <image src="{{item}}" mode="widthFix" />
+        </block>
+      </view>
+      <view class="sep_line"></view>
     </view>
+
+    <van-goods-action>
+      <van-goods-action-icon icon="chat-o" text="客服" open-type="contact" />
+      <van-goods-action-icon icon="star" text="收藏" url="/pages/tabs/cart" link-type="switchTab" />
+      <van-goods-action-button text="价格走势" type="warning" bind:click="showPriceHistory" />
+      <van-goods-action-button text="跳转购买" bind:click="jumpBuy" />
+    </van-goods-action>
+
+    <van-dialog
+      use-slot
+      title="商品历史价格"
+      show="{{showPriceHistory}}"
+      show-cancel-button
+      confirmButtonText="订阅低价提醒"
+      cancelmButtonText="关闭"
+      confirm-button-open-type="getUserInfo"
+      bind:close="closePriceHistory"
+      bind:getuserinfo="getUserInfo"
+    >
+      <view class="ec-container">
+        <view class="hp-more">
+          <text class="remark">历史最低价{{hpInfo.lowerPrice}}</text>
+          <text class="lower">价格趋势{{hpInfo.changPriceRemark}}</text>
+        </view>
+        <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+      </view>
+    </van-dialog>
   </view>
 </template>
 
@@ -73,10 +107,6 @@ swiper {
         width: 200rpx;
         text-align: center;
         border-left: 1rpx solid #eee;
-        .star-icon{
-          width: 48rpx;
-          height: 48rpx;
-        }
         .star-text {
           font-size: 20rpx;
         }
@@ -88,6 +118,36 @@ swiper {
       // font-weight: bold;
       line-height: 80rpx;
     }
+  }
+}
+
+.ec-container {
+  width: 100%;
+  height: 564rpx;
+  border: 1rpx solid #ed5333;
+  .hp-more {
+    width: 100%;
+    height: 60rpx;
+    position: relative;
+    border: 1rpx solid #ececec;
+    .remark {
+      font-size: 24rpx;
+      line-height: 60rpx;
+      color: #ed5333;
+      position: absolute;
+      left: 20rpx;
+    }
+    .lower {
+      font-size: 24rpx;
+      line-height: 60rpx;
+      color: #ed5333;
+      position: absolute;
+      right: 20rpx;
+    }
+  }
+  .ec-canvas {
+    width: 100%;
+    height: 100%;
   }
 }
 

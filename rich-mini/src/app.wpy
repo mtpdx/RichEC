@@ -65,6 +65,17 @@ export default class extends wepy.app {
         //   selectedIconPath: './assets/icons/my-active.png'
         // }
       ]
+    },
+    usingComponents: {
+      'van-goods-action': './assets/vant/goods-action/index',
+      'van-goods-action-icon': './assets/vant/goods-action-icon/index',
+      'van-goods-action-button': './assets/vant/goods-action-button/index',
+      'van-icon': './assets/vant/icon/index',
+      'van-collapse': './assets/vant/collapse/index',
+      'van-collapse-item': './assets/vant/collapse-item/index',
+      'van-dialog': './assets/vant/dialog/index',
+      // 'ec-canvas': './assets/ec-canvas/ec-canvas'
+      'ec-canvas': './components/ec-canvas/ec-canvas'
     }
   }
 
