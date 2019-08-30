@@ -1,32 +1,64 @@
 <template>
-  <view class="home-container">
-    <block wx:for="{{goodsList}}" wx:key="index">
-      <!-- <richcard goodob="{{item}}" @tap="goGoodsDetail({{item.id}})" /> -->
-      <!-- <view class="sep_line"></view> -->
+  <view class="asdf">
+    <van-row>
+      <van-col span="4" class="p-scan">
+        <van-icon name="scan" size="64rpx" class="scan" color="#da2f25" />
+      </van-col>
+      <van-col span="20">
+        <van-search
+          value="{{ value }}"
+          placeholder="搜索关键词"
+          show-action
+          shape="round"
+          bind:search="onSearch"
+          bind:cancel="onCancel"
+        />
+      </van-col>
+    </van-row>
+    <view class="home-container">
+      <swiper
+        indicator-dots="{{indicatorDots}}"
+        autoplay="{{autoplay}}"
+        interval="{{interval}}"
+        duration="{{duration}}"
+        circular="{{duration}}"
+      >
+        <block wx:for="{{imgUrls}}" wx:key="index">
+          <swiper-item>
+            <navigator url="{{item.navigator_url}}" open-type="{{item.open_type}}">
+              <image src="{{item.image_src}}" />
+            </navigator>
+          </swiper-item>
+        </block>
+      </swiper>
+      <block wx:for="{{goodsList}}" wx:key="index">
+        <!-- <richcard goodob="{{item}}" @tap="goGoodsDetail({{item.id}})" /> -->
+        <!-- <view class="sep_line"></view> -->
 
-      <!-- todo 自定义component RichGoodCard 不管用啊 辣鸡 难道只能原生自定义??? 待研究 -->
-      <!-- 
+        <!-- todo 自定义component RichGoodCard 待研究 -->
+        <!-- 
         script 里加注释还不行了???
         // import RichCard from '@/components/RichGoodCard'
           // components = {
           //   'richcard': RichCard
           // }
-      -->
-      <view class="card-container" bindtap="goGoodsDetail({{item.id + ',' + item.vid}})">
-        <view class="img">
-          <image src="{{item.coverImage}}" />
+        -->
+        <view class="card-container" bindtap="goGoodsDetail({{item.id + ',' + item.vid}})">
+          <view class="img">
+            <image src="{{item.coverImage}}" />
+          </view>
+          <text class="title" selectable>{{item.title}}</text>
+          <text wx:if="{{item.nowPrice}}" class="o-price">原价 ¥{{item.price}}</text>
+          <text
+            class="n-price"
+          >{{item.nowPrice ? "券后价":"现价"}} ¥{{item.nowPrice ?item.nowPrice:item.price}}</text>
+          <text class="sale">月销量{{item.monthSale}}</text>
+          <text wx:if="{{item.couponMoney}}" class="coupon">券{{item.couponMoney}}</text>
         </view>
-        <text class="title" selectable>{{item.title}}</text>
-        <text wx:if="{{item.nowPrice}}" class="o-price">原价 ¥{{item.price}}</text>
-        <text
-          class="n-price"
-        >{{item.nowPrice ? "券后价":"现价"}} ¥{{item.nowPrice ?item.nowPrice:item.price}}</text>
-        <text class="sale">月销量{{item.monthSale}}</text>
-        <text wx:if="{{item.couponMoney}}" class="coupon">券{{item.couponMoney}}</text>
-      </view>
-      <view class="sep_line"></view>
-    </block>
-    <view class="over_line" hidden="{{!noMoreData}}">-------- No More Data --------</view>
+        <view class="sep_line"></view>
+      </block>
+      <view class="over_line" hidden="{{!noMoreData}}">-------- No More Data --------</view>
+    </view>
   </view>
 </template>
 
@@ -40,10 +72,39 @@ export default class extends wepy.page {
 </script>
 
 <style lang="less">
+.asdf {
+  position: relative;
+}
+.van-row {
+  background-color: #fff;
+  width: 100%;
+  position: fixed;
+  border: 1rpx solid #ececec;
+  .p-scan {
+    text-align: center;
+  }
+}
 .home-container {
+  position: absolute;
+  left: 0px;
+  top: 96rpx;
+  z-index: -1;
   margin: 5rpx auto;
   width: 710rpx;
 }
+
+swiper {
+  // margin: 10rpx;
+  height: 280rpx;
+  navigator,
+  image {
+    margin: 0 auto;
+    height: 100%;
+    width: 710rpx;
+    border-radius: 16rpx;
+  }
+}
+
 .card-container {
   width: 100%;
   height: 280rpx;

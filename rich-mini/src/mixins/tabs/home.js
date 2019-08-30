@@ -2,6 +2,15 @@ import wepy from 'wepy'
 
 export default class extends wepy.mixin {
     data = {
+        // swiper
+        imgUrls: [],
+        indicatorDots: true,
+        autoplay: true,
+        circular: true,
+        interval: 3000,
+        duration: 1000,
+
+        // goods list
         pagenum: 1,
         total: 0,
         goodsList: [],
@@ -14,7 +23,21 @@ export default class extends wepy.mixin {
     }
 
     initData() {
+        this.getSwiper()
         this.getGoodList()
+    }
+
+    async getSwiper() {
+        const { data: res, statusCode } = await wepy.richGet('/home/swiperdata')
+
+        if (statusCode !== 200 && res.state !== 0) {
+            wepy.richToast('failed')
+            return console.log('get data failed')
+        }
+
+        this.imgUrls = res.data
+        this.$apply()
+        wepy.richToast('swiper success')
     }
 
     async getGoodList(cb) {
@@ -42,7 +65,7 @@ export default class extends wepy.mixin {
     methods = {
         goGoodsDetail(idStr) {
             let ids = idStr.split(',')
-            
+
             wepy.navigateTo({
                 url: '/pages/goods_detail?goods_id=' + ids[0] + (ids.length > 1 ? ("&vid=" + ids[1]) : '')
             })

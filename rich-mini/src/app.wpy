@@ -19,9 +19,9 @@ export default class extends wepy.app {
     ],
     window: {
       backgroundTextStyle: 'dark',
-      navigationBarBackgroundColor: '#d81e06',
+      navigationBarBackgroundColor: '#ffffff',
       navigationBarTitleText: 'Rich',
-      navigationBarTextStyle: 'white',
+      navigationBarTextStyle: 'black',
       onReachBottomDistance: 60,
       enablePullDownRefresh: true
     },
@@ -74,6 +74,9 @@ export default class extends wepy.app {
       'van-collapse': './assets/vant/collapse/index',
       'van-collapse-item': './assets/vant/collapse-item/index',
       'van-dialog': './assets/vant/dialog/index',
+      'van-search': './assets/vant/search/index',
+      'van-row': './assets/vant/row/index',
+      'van-col': './assets/vant/col/index',
       // 'ec-canvas': './assets/ec-canvas/ec-canvas'
       'ec-canvas': './components/ec-canvas/ec-canvas'
     }
