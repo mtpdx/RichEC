@@ -85,7 +85,7 @@ export default class extends wepy.mixin {
         this.getGoodList()
     }
 
-    onPullDowenRefresh() {
+    onPullDownRefresh() {      
         this.pagenum = 1
         this.total = 0
         this.goodsList = []

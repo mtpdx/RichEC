@@ -77,6 +77,7 @@ export default class extends wepy.app {
       'van-search': './assets/vant/search/index',
       'van-row': './assets/vant/row/index',
       'van-col': './assets/vant/col/index',
+      "van-notice-bar": "./assets/vant/notice-bar/index",
       // 'ec-canvas': './assets/ec-canvas/ec-canvas'
       'ec-canvas': './components/ec-canvas/ec-canvas'
     }
