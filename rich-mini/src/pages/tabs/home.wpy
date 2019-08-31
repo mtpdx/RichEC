@@ -2,7 +2,7 @@
   <view class="asdf">
     <van-row>
       <van-col span="4" class="p-scan">
-        <van-icon name="scan" size="64rpx" class="scan" color="#da2f25" />
+        <van-icon name="scan" size="64rpx" class="scansssssss" color="#da2f25" />
       </van-col>
       <van-col span="20">
         <van-search
@@ -81,7 +81,11 @@ export default class extends wepy.page {
   position: fixed;
   border: 1rpx solid #ececec;
   .p-scan {
-    text-align: center;
+    .scansssssss {
+      position: relative;
+      top: 20rpx;
+      left: 20rpx;
+    }
   }
 }
 .home-container {

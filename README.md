@@ -11,26 +11,40 @@ pc后台管理:每天推荐商品管理
 
 
 
-### 数据
+- [ ] ### 数据
 
-`技术栈:scrapy`
 
-### 后端  
+`技术栈:scrapy-redis`
 
-`技术栈:node,express`
+- [x] ### 后端  
 
-### pc后台管理
 
-`技术栈:vue`
+`技术栈:node, express`
 
-### pc端
+- [x] ### Web后台管理
+
+
+`技术栈:vue2.x, vuecli3,Element-UI`
+
+- [ ] ### Web端
+
+
+`技术栈:react, webpack`
+
+- [ ] ### 移动Web端
 
 `技术栈:`
 
-### 移动web端
+- [x] ### 微信小程序
 
-`技术栈:react`
+`技术栈:wepy, vant, echarts`
 
-### 微信小程序
+### Android / IOS
 
-### Android
+- [ ] ReactNative版
+- [ ] Flutter版
+- [ ] Kotlin版
+
+
+
+### 
