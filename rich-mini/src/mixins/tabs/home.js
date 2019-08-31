@@ -48,6 +48,7 @@ export default class extends wepy.mixin {
             pagenum: this.pagenum
         })
 
+
         if (res.state !== 0) {
             return wepy.baseToast()
         }
